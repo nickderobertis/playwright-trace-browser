@@ -123,7 +123,7 @@ class _FileTree:
             # There are multiple common base paths to create
             unique_common_base_paths = set([bp for bp in common_base_names if bp])
             # Gather the files that have the same common base path
-            children: list[_File | _FileTree] = []
+            children_: list[_File | _FileTree] = []
             for base_path in unique_common_base_paths:
                 files_for_base_path = [
                     f
@@ -133,8 +133,8 @@ class _FileTree:
                 file_tree = cls(
                     path=obj.path, children=files_for_base_path
                 ).with_base_path_folder()
-                children.append(file_tree)
-            obj = replace(obj, children=children)
+                children_.append(file_tree)
+            obj = replace(obj, children=children_)
 
         # Recurse into the children
         new_children: list[_File | _FileTree] = []
