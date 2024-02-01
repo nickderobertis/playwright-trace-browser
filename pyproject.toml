@@ -45,6 +45,9 @@ pytest-cov = "*"
 [tool.poetry.group.dev.dependencies]
 textual-dev = "^1.4.0"
 
+[project.scripts]
+playwright-trace-browser = "playwright_trace_browser.__main__:main"
+
 [tool.setuptools]
 packages = ["playwright_trace_browser"]
 

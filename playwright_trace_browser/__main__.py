@@ -1,3 +1,9 @@
 from playwright_trace_browser.app import PlaywrightTraceBrowser
 
-PlaywrightTraceBrowser().run()
+
+def main():
+    PlaywrightTraceBrowser().run()
+
+
+if __name__ == "__main__":
+    main()
