@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/nickderobertis/playwright-trace-browser/compare/v1.0.0...v1.0.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* Use poetry script ([c3be249](https://github.com/nickderobertis/playwright-trace-browser/commit/c3be2499cd197319de068fc763e736d1e16211b1))
+
 ## 1.0.0 (2024-02-01)
 
 
