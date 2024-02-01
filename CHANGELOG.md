@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/nickderobertis/playwright-trace-browser/compare/v1.1.0...v1.1.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* Fix handling of more complex nested file cases and update sample data ([972aaf1](https://github.com/nickderobertis/playwright-trace-browser/commit/972aaf1ebdfc0801aa365b3f1130269b88ebd20c))
+* Fix lint issue ([c010b27](https://github.com/nickderobertis/playwright-trace-browser/commit/c010b270d08a5ec4e78e6c4429162c1a4d1b3aad))
+
 ## [1.1.0](https://github.com/nickderobertis/playwright-trace-browser/compare/v1.0.1...v1.1.0) (2024-02-01)
 
 
