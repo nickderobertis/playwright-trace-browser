@@ -14,7 +14,26 @@
   "applied_templates": [
     {
       "name": "copier-pypi-sphinx-flexlate",
-      "data": {},
+      "data": {
+        "package_name": "playwright-trace-browser",
+        "package_directory": "playwright_trace_browser",
+        "full_name": "Playwright Trace Browser",
+        "repo_name": "playwright-trace-browser",
+        "repo_username": "nickderobertis",
+        "short_description": "A TUI app for exploring Playwright traces",
+        "main_branch_name": "main",
+        "package_author": "Nick DeRobertis",
+        "author_email": "derobertis.nick@gmail.com",
+        "google_analytics_id": "",
+        "os_support": [
+          "ubuntu",
+          "macos",
+          "windows"
+        ],
+        "minimum_python_version": "3.9",
+        "topics": [],
+        "logo_url": ""
+      },
       "version": "86069a353b4337488dd695c20ee98589ddef70e4",
       "add_mode": "local",
       "root": "."

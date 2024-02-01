@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "playwright-trace-browser-lint"
+description = "Linting for playwright-trace-browser"
+version = "1.0.0"
+authors = ["Nick DeRobertis <derobertis.nick@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+playwright-trace-browser = {path = "../..", develop = true}
+flake8 = "*"
+mypy = "*"
