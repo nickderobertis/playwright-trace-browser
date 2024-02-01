@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/nickderobertis/playwright-trace-browser/compare/v1.0.1...v1.1.0) (2024-02-01)
+
+
+### Features
+
+* Add support for opening images ([9841c0a](https://github.com/nickderobertis/playwright-trace-browser/commit/9841c0a055e091d03c52af90369f4d48ea27d79d))
+
 ## [1.0.1](https://github.com/nickderobertis/playwright-trace-browser/compare/v1.0.0...v1.0.1) (2024-02-01)
 
 
