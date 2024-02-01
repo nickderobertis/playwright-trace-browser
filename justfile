@@ -63,6 +63,12 @@ docs:
     just docs-build
     just docs-serve
 
+dev FOLDER='sample-traces/':
+    {{run}} textual run --dev playwright_trace_browser.app:PlaywrightTraceBrowser {{FOLDER}}
+
+prod FOLDER='sample-traces/':
+    {{run}} python -m playwright_trace_browser {{FOLDER}}
+
 poetry command target *ARGS:
     #!/usr/bin/env bash
     cd {{invocation_directory()}}
