@@ -4,6 +4,7 @@ import tempfile
 from dataclasses import dataclass, replace
 from functools import cached_property
 from pathlib import Path
+from typing import Sequence
 
 import more_itertools
 
@@ -17,7 +18,7 @@ class _File:
 @dataclass(frozen=True)
 class _FileTree:
     path: Path
-    children: "list[_File | _FileTree]"
+    children: "Sequence[_File | _FileTree]"
 
     @cached_property
     def common_base_path_str(self) -> str:
@@ -112,7 +113,7 @@ class _FileTree:
             obj = replace(obj, children=children)
 
         # Recurse into the children
-        new_children = []
+        new_children: list[_File | _FileTree] = []
         for child in obj.children:
             if isinstance(child, _FileTree):
                 new_children.append(child.restructure_files_into_tree())
