@@ -94,9 +94,31 @@ class _FileTree:
 
         # Handle top level of tree
         common_base_names = self.common_base_names()
-        if os.path.commonprefix(common_base_names):
-            # There is a single common base path to create
+        common_prefix = os.path.commonprefix(common_base_names)
+        all_files_have_common_paths = (
+            len(common_base_names) == len({f.path.parent for f in obj.children}) - 1
+        )
+        if all_files_have_common_paths and common_prefix:
+            # There is a single common base path to create for all files
             obj = cls(path=obj.path, children=[obj.with_base_path_folder()])
+        elif common_prefix:
+            # There is a common base path to create, but it doesn't apply to all files
+            children: list[_File | _FileTree] = []
+            # Create a new tree for common base path
+            files_for_common_prefix = [
+                f
+                for f in obj.files
+                if str(f.path.parent.name).startswith(common_prefix)
+            ]
+            children.append(
+                cls(
+                    path=obj.path, children=files_for_common_prefix
+                ).with_base_path_folder()
+            )
+            # Other files come into this level
+            other_files = [f for f in obj.files if f not in files_for_common_prefix]
+            children.extend(other_files)
+            obj = replace(obj, children=children)
         elif common_base_names:
             # There are multiple common base paths to create
             unique_common_base_paths = set([bp for bp in common_base_names if bp])
