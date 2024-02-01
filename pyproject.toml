@@ -32,11 +32,17 @@ repository = "https://github.com/nickderobertis/playwright-trace-browser"
 documentation = "https://nickderobertis.github.io/playwright-trace-browser"
 
 [tool.poetry.dependencies]
-python = ">=3.9"
+python = ">=3.9,<4.0"
+playwright = "^1.41.1"
+textual = "^0.48.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "*"
 pytest-cov = "*"
+
+
+[tool.poetry.group.dev.dependencies]
+textual-dev = "^1.4.0"
 
 [tool.setuptools]
 packages = ["playwright_trace_browser"]
