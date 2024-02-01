@@ -14,7 +14,8 @@ from textual.containers import Container
 from textual.reactive import var
 from textual.widgets import DirectoryTree, Footer, Header
 
-from playwright_trace_browser.viewer import open_trace_viewer
+from playwright_trace_browser._folder import create_restructured_temp_dir_for_viewing
+from playwright_trace_browser._viewer import open_trace_viewer
 
 
 class PlaywrightTraceBrowser(App):
@@ -35,9 +36,10 @@ class PlaywrightTraceBrowser(App):
     def compose(self) -> ComposeResult:
         """Compose our UI."""
         path = "./" if len(sys.argv) < 2 else sys.argv[1]
+        temp_path = create_restructured_temp_dir_for_viewing(Path(path))
         yield Header()
         with Container():
-            yield DirectoryTree(path, id="tree-view")
+            yield DirectoryTree(temp_path, id="tree-view")
         yield Footer()
 
     def on_mount(self) -> None:
