@@ -3,17 +3,12 @@ Screen {
 }
 
 #tree-view {
-    display: none;
+    display: block;
     scrollbar-gutter: stable;
     overflow: auto;
     width: auto;
     height: 100%;
     dock: left;
-}
-
-CodeBrowser.-show-tree #tree-view {
-    display: block;
-    max-width: 50%;
 }
 
 
