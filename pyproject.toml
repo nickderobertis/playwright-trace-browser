@@ -4,7 +4,7 @@ version = "1.0.0"
 
 [tool.poetry]
 name = "playwright-trace-browser"
-version = "1.0.0"
+version = "1.0.1"
 description = "A TUI app for exploring Playwright traces"
 authors = ["Nick DeRobertis <derobertis.nick@gmail.com>"]
 readme = "README.md"
