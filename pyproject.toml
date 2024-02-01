@@ -41,11 +41,10 @@ more-itertools = "^10.2.0"
 pytest = "*"
 pytest-cov = "*"
 
-
 [tool.poetry.group.dev.dependencies]
 textual-dev = "^1.4.0"
 
-[project.scripts]
+[tool.poetry.scripts]
 playwright-trace-browser = "playwright_trace_browser.__main__:main"
 
 [tool.setuptools]
