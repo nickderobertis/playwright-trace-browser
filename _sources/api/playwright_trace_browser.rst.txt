@@ -1,0 +1,19 @@
+playwright\_trace\_browser package
+==================================
+
+.. automodule:: playwright_trace_browser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+playwright\_trace\_browser.app module
+-------------------------------------
+
+.. automodule:: playwright_trace_browser.app
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

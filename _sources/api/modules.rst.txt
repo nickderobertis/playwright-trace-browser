@@ -1,0 +1,7 @@
+playwright_trace_browser
+========================
+
+.. toctree::
+   :maxdepth: 4
+
+   playwright_trace_browser
