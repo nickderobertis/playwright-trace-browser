@@ -264,11 +264,13 @@
 
 <span class="kn">from</span> <span class="nn">textual.app</span> <span class="kn">import</span> <span class="n">App</span><span class="p">,</span> <span class="n">ComposeResult</span>
 <span class="kn">from</span> <span class="nn">textual.containers</span> <span class="kn">import</span> <span class="n">Container</span>
-<span class="kn">from</span> <span class="nn">textual.reactive</span> <span class="kn">import</span> <span class="n">var</span>
 <span class="kn">from</span> <span class="nn">textual.widgets</span> <span class="kn">import</span> <span class="n">DirectoryTree</span><span class="p">,</span> <span class="n">Footer</span><span class="p">,</span> <span class="n">Header</span>
 
 <span class="kn">from</span> <span class="nn">playwright_trace_browser._folder</span> <span class="kn">import</span> <span class="n">create_restructured_temp_dir_for_viewing</span>
+<span class="kn">from</span> <span class="nn">playwright_trace_browser._image</span> <span class="kn">import</span> <span class="n">open_image</span>
 <span class="kn">from</span> <span class="nn">playwright_trace_browser._viewer</span> <span class="kn">import</span> <span class="n">open_trace_viewer</span>
+
+<span class="n">placeholder_image_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"placeholder.jpg"</span>
 
 
 <div class="viewcode-block" id="PlaywrightTraceBrowser"><a class="viewcode-back" href="../../api/playwright_trace_browser.html#playwright_trace_browser.app.PlaywrightTraceBrowser">[docs]</a><span class="k">class</span> <span class="nc">PlaywrightTraceBrowser</span><span class="p">(</span><span class="n">App</span><span class="p">):</span>
@@ -276,23 +278,19 @@
 
     <span class="n">CSS_PATH</span> <span class="o">=</span> <span class="s2">"app.tcss"</span>
     <span class="n">BINDINGS</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s2">"f"</span><span class="p">,</span> <span class="s2">"toggle_files"</span><span class="p">,</span> <span class="s2">"Toggle Files"</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">"q"</span><span class="p">,</span> <span class="s2">"quit"</span><span class="p">,</span> <span class="s2">"Quit"</span><span class="p">),</span>
     <span class="p">]</span>
 
-    <span class="n">show_tree</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-
-<div class="viewcode-block" id="PlaywrightTraceBrowser.watch_show_tree"><a class="viewcode-back" href="../../api/playwright_trace_browser.html#playwright_trace_browser.app.PlaywrightTraceBrowser.watch_show_tree">[docs]</a>    <span class="k">def</span> <span class="nf">watch_show_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_tree</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Called when show_tree is modified."""</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_class</span><span class="p">(</span><span class="n">show_tree</span><span class="p">,</span> <span class="s2">"-show-tree"</span><span class="p">)</span></div>
+<div class="viewcode-block" id="PlaywrightTraceBrowser.__init__"><a class="viewcode-back" href="../../api/playwright_trace_browser.html#playwright_trace_browser.app.PlaywrightTraceBrowser.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s2">"./"</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">create_restructured_temp_dir_for_viewing</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="PlaywrightTraceBrowser.compose"><a class="viewcode-back" href="../../api/playwright_trace_browser.html#playwright_trace_browser.app.PlaywrightTraceBrowser.compose">[docs]</a>    <span class="k">def</span> <span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComposeResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Compose our UI."""</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="s2">"./"</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">temp_path</span> <span class="o">=</span> <span class="n">create_restructured_temp_dir_for_viewing</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
         <span class="k">yield</span> <span class="n">Header</span><span class="p">()</span>
         <span class="k">with</span> <span class="n">Container</span><span class="p">():</span>
-            <span class="k">yield</span> <span class="n">DirectoryTree</span><span class="p">(</span><span class="n">temp_path</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"tree-view"</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">DirectoryTree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"tree-view"</span><span class="p">)</span>
         <span class="k">yield</span> <span class="n">Footer</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="PlaywrightTraceBrowser.on_mount"><a class="viewcode-back" href="../../api/playwright_trace_browser.html#playwright_trace_browser.app.PlaywrightTraceBrowser.on_mount">[docs]</a>    <span class="k">def</span> <span class="nf">on_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -303,15 +301,16 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Called when the user click a file in the directory tree."""</span>
         <span class="n">event</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="c1"># await open_trace_viewer(event.path)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">run_worker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_trace_viewer</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">path</span><span class="p">))</span></div>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">".zip"</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run_worker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_trace_viewer</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run_worker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">open_image</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">path</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="PlaywrightTraceBrowser.open_trace_viewer"><a class="viewcode-back" href="../../api/playwright_trace_browser.html#playwright_trace_browser.app.PlaywrightTraceBrowser.open_trace_viewer">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">open_trace_viewer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">await</span> <span class="n">open_trace_viewer</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PlaywrightTraceBrowser.action_toggle_files"><a class="viewcode-back" href="../../api/playwright_trace_browser.html#playwright_trace_browser.app.PlaywrightTraceBrowser.action_toggle_files">[docs]</a>    <span class="k">def</span> <span class="nf">action_toggle_files</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Called in response to key binding."""</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">show_tree</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_tree</span></div></div>
+<div class="viewcode-block" id="PlaywrightTraceBrowser.open_image"><a class="viewcode-back" href="../../api/playwright_trace_browser.html#playwright_trace_browser.app.PlaywrightTraceBrowser.open_image">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">open_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">open_image</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
