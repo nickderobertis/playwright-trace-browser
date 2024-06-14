@@ -33,7 +33,7 @@ documentation = "https://nickderobertis.github.io/playwright-trace-browser"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
-playwright = "^1.41.1"
+playwright = ">=1.43.0"
 textual = "^0.48.1"
 more-itertools = "^10.2.0"
 
